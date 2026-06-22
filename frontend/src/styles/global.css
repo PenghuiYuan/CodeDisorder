@@ -1,0 +1,366 @@
+/* Google 翻译风格,主色 #1a73e8 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #1a73e8;
+  --primary-hover: #1557b0;
+  --border-color: #dadce0;
+  --bg-color: #ffffff;
+  --text-color: #202124;
+  --text-secondary: #5f6368;
+  --error-color: #d93025;
+  --success-color: #188038;
+  --warning-color: #f29900;
+  --disabled-bg: #f1f3f4;
+  --disabled-text: #9aa0a6;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 14px;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  line-height: 1.5;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 顶栏 */
+.top-bar {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-color);
+}
+
+.top-bar h1 {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.top-bar-links {
+  display: flex;
+  gap: 16px;
+}
+
+.top-bar-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.top-bar-links a:hover {
+  text-decoration: underline;
+}
+
+/* 主布局 */
+.main-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 编辑器面板 */
+.editor-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.editor-panel:last-child {
+  border-right: none;
+}
+
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  background: #f8f9fa;
+}
+
+.editor-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.language-select {
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-color);
+  font-size: 13px;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.char-count {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.char-count.error {
+  color: var(--error-color);
+}
+
+.editor-toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border-color);
+  background: #f8f9fa;
+}
+
+.button {
+  padding: 6px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background: #f1f3f4;
+}
+
+.button:disabled {
+  background: var(--disabled-bg);
+  color: var(--disabled-text);
+  cursor: not-allowed;
+}
+
+.button-primary {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  font-weight: 500;
+}
+
+.button-primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+.button-primary:disabled {
+  background: var(--disabled-bg);
+  color: var(--disabled-text);
+}
+
+/* Monaco 容器 */
+.monaco-container {
+  flex: 1;
+  overflow: hidden;
+}
+
+.monaco-container.error {
+  border: 2px solid var(--error-color);
+}
+
+/* 结果面板 */
+.result-toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border-color);
+  background: #f8f9fa;
+}
+
+/* 中栏控制 */
+.control-bar {
+  width: 320px;
+  padding: 24px;
+  background: #f8f9fa;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.control-select {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-color);
+  font-size: 13px;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.control-button {
+  width: 240px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.control-hint {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* 自定义策略折叠区 */
+.strategy-customizer {
+  border-top: 1px solid var(--border-color);
+  padding-top: 16px;
+}
+
+.strategy-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.strategy-header-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.strategy-toggle-icon {
+  font-size: 12px;
+  color: var(--text-secondary);
+  transition: transform 0.2s;
+}
+
+.strategy-toggle-icon.expanded {
+  transform: rotate(90deg);
+}
+
+.strategy-list {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.strategy-list.expanded {
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.strategy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.strategy-item:last-child {
+  border-bottom: none;
+}
+
+.strategy-checkbox {
+  margin-top: 2px;
+}
+
+.strategy-content {
+  flex: 1;
+}
+
+.strategy-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.strategy-description {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* 底栏 */
+.status-bar {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  border-top: 1px solid var(--border-color);
+  background: #f8f9fa;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Toast 提示 */
+.toast {
+  position: fixed;
+  top: 60px;
+  right: 24px;
+  padding: 12px 16px;
+  background: #323232;
+  color: white;
+  border-radius: 4px;
+  font-size: 13px;
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 状态文本 */
+.status-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 16px;
+}
+
+.status-text.error {
+  color: var(--error-color);
+}
+
+.status-text.success {
+  color: var(--success-color);
+}
+
+/* 批量结果提示 */
+.batch-info {
+  padding: 8px 16px;
+  background: #e8f0fe;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 12px;
+  color: var(--primary-color);
+}

@@ -1,0 +1,56 @@
+[project]
+name = "codeconfuse-web"
+version = "0.1.0"
+description = "Code obfuscation web service (M1 MVP)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "CodeDisorder" }]
+
+dependencies = [
+    "fastapi>=0.110,<1.0",
+    "uvicorn[standard]>=0.27,<1.0",
+    "pydantic>=2.6,<3.0",
+    "python-multipart>=0.0.9",     # FastAPI form/parse, even MVP keeps it for SPEC §15 compat
+    "clang>=16.0,<19.0",           # PyClang; matches the system libclang we'll pin in Docker
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0,<9.0",
+    "pytest-asyncio>=0.23,<1.0",
+    "httpx>=0.27,<1.0",            # for FastAPI TestClient async
+    "ruff>=0.4,<1.0",
+]
+
+[project.scripts]
+# nothing yet; we run workers via `python -m backend.workers.<lang>.worker`
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["backend"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["E501"]  # line-length is enforced by formatter
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["backend/tests"]
+addopts = "-ra -q"
+
+[tool.uv]
+# dev-friendly lockstep
+dev-dependencies = [
+    "pytest>=8.0,<9.0",
+    "pytest-asyncio>=0.23,<1.0",
+    "httpx>=0.27,<1.0",
+    "ruff>=0.4,<1.0",
+]

@@ -1,0 +1,26 @@
+{
+  "$schema": "../language_settings.schema.json",
+  "language": "go",
+  "display": "Go",
+  "file_extension": "go",
+  "verify_command": ["go", "vet", "{path}"],
+  "verify_compiler_fallback": null,
+  "reserved": [
+    "break", "case", "chan", "const", "continue", "default", "defer", "else",
+    "fallthrough", "for", "func", "go", "goto", "if", "import", "interface",
+    "map", "package", "range", "return", "select", "struct", "switch", "type",
+    "var", "true", "false", "nil", "iota",
+    "any", "bool", "byte", "complex64", "complex128", "error", "float32",
+    "float64", "int", "int8", "int16", "int32", "int64", "rune", "string",
+    "uint", "uint8", "uint16", "uint32", "uint64", "uintptr",
+    "append", "cap", "close", "complex", "copy", "delete", "imag", "len",
+    "make", "new", "panic", "print", "println", "real", "recover",
+    "fmt", "os", "io", "bufio", "strings", "strconv", "sort", "math", "time",
+    "log", "errors", "context", "sync", "encoding", "json", "reflect", "testing"
+  ],
+  "rename_targets": [
+    "VAR_DECL", "FUNCTION_DECL", "PARM_DECL", "FIELD_DECL", "STRUCT_DECL"
+  ],
+  "include_cursor_kinds": ["INCLUSION_DIRECTIVE"],
+  "_mvp_status": "stub"
+}

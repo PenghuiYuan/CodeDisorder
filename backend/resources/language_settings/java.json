@@ -1,0 +1,32 @@
+{
+  "$schema": "../language_settings.schema.json",
+  "language": "java",
+  "display": "Java",
+  "file_extension": "java",
+  "verify_command": ["javac", "-proc:none", "-Xlint:none", "{path}"],
+  "verify_compiler_fallback": null,
+  "reserved": [
+    "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char",
+    "class", "const", "continue", "default", "do", "double", "else", "enum",
+    "extends", "final", "finally", "float", "for", "goto", "if", "implements",
+    "import", "instanceof", "int", "interface", "long", "native", "new",
+    "package", "private", "protected", "public", "return", "short", "static",
+    "strictfp", "super", "switch", "synchronized", "this", "throw", "throws",
+    "transient", "try", "void", "volatile", "while", "yield", "var", "record",
+    "sealed", "non-sealed", "permits", "true", "false", "null",
+    "System", "String", "Integer", "Long", "Double", "Float", "Boolean",
+    "List", "Map", "Set", "ArrayList", "HashMap", "HashSet", "LinkedList",
+    "TreeMap", "TreeSet", "Optional", "Stream", "Collectors", "Objects",
+    "Math", "Integer.MIN_VALUE", "Integer.MAX_VALUE", "Math.PI", "Math.E",
+    "out", "in", "err", "println", "print", "printf", "Scanner", "Arrays",
+    "Collections", "Comparator", "Comparable", "Iterator", "Iterable",
+    "Comparable", "AutoCloseable", "Runnable", "Callable", "Exception",
+    "RuntimeException", "NullPointerException", "IllegalArgumentException"
+  ],
+  "rename_targets": [
+    "VAR_DECL", "FUNCTION_DECL", "CXX_METHOD", "PARM_DECL", "FIELD_DECL",
+    "CXX_RECORD"
+  ],
+  "include_cursor_kinds": ["INCLUSION_DIRECTIVE"],
+  "_mvp_status": "stub"
+}

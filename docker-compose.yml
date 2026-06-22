@@ -1,0 +1,45 @@
+# Compose file for local dev + single-node production-style deploy.
+# One service only (api), which itself spawns language Workers as subprocesses.
+# Frontend is built INTO the api image (multi-stage Dockerfile) and served as
+# static files by FastAPI — we don't need a separate web container unless the
+# user wants nginx in front for TLS termination. Add ``caddy``/``nginx`` later.
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: codedisorder-api:latest
+    container_name: codedisorder-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # Production: workers run as separate stdio processes inside this
+      # container. Override with ``-e WORKER_MODE=import`` to debug without
+      # spawn overhead.
+      - WORKER_MODE=${WORKER_MODE:-stdio}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      # Debian 12 puts libclang.so.1 here; we set it both for PyClang and
+      # so user-defined overrides can point elsewhere if needed.
+      - LIBCLANG_LIBRARY_PATH=/usr/lib/llvm-14/lib/libclang.so.1
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1G
+        reservations:
+          cpus: "0.5"
+          memory: 256M
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import urllib.request, sys; sys.exit(0) if urllib.request.urlopen('http://127.0.0.1:8000/api/health').status == 200 else sys.exit(1)"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    # /tmp is where Worker verify steps (gcc/clang -fsyntax-only) write temp
+    # files. /tmp is a tmpfs by default in most Docker setups; that's fine
+    # because the temp files are tiny and removed in a finally block.
+    tmpfs:
+      - /tmp:size=128M

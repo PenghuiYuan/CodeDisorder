@@ -1,0 +1,35 @@
+{
+  "$schema": "./presets.schema.json",
+  "presets": [
+    {
+      "id": "default",
+      "display": "默认 (default)",
+      "strength": "weak",
+      "description": "M1 唯一预设:改名 + 数字字面量改写 + include/import 随机 + 注释剥离。",
+      "strategies": {
+        "rename": true,
+        "flatten": "off",
+        "junk": "off",
+        "splitExpression": false,
+        "literalRewrite": true,
+        "splitFunction": false,
+        "templateRandom": false,
+        "stripComments": true,
+        "shuffleIncludes": true
+      }
+    }
+  ],
+  "custom": {
+    "display": "自定义",
+    "strategies": {
+      "rename": false,
+      "flatten": "off",
+      "junk": "off",
+      "splitExpression": false,
+      "splitFunction": false,
+      "templateRandom": false,
+      "stripComments": false,
+      "shuffleIncludes": false
+    }
+  }
+}

@@ -1,0 +1,41 @@
+# Anything not needed to build the image
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Git
+.git/
+.gitignore
+.github/
+
+# Editor
+.idea/
+.vscode/
+.DS_Store
+
+# Test artifacts
+backend/tests/fixtures/__pycache__/
+*.egg-info/
+
+# The wordlist is rebuilt at image build time; don't ship the host one
+# (different size, different ordering, different mtime → bad layer cache)
+backend/resources/wordlist.txt
+
+# Docker self-references
+Dockerfile
+Dockerfile.web
+docker-compose.yml
+.dockerignore

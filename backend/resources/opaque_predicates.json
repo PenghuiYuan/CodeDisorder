@@ -1,0 +1,44 @@
+{
+  "$schema": "./opaque_predicates.schema.json",
+  "predicates": [
+    {
+      "id": "x_sq_plus_1_odd",
+      "languages": ["c", "cpp", "java", "go"],
+      "template": "(({x}*{x} + 1) % 2 == 1)",
+      "value": true,
+      "note": "x*x is even for any integer x, +1 makes it odd"
+    },
+    {
+      "id": "x_sq_nonneg",
+      "languages": ["c", "cpp", "java", "go"],
+      "template": "(({x}*{x}) >= 0)",
+      "value": true,
+      "note": "square is non-negative for any real x"
+    },
+    {
+      "id": "seven_div_three_two",
+      "languages": ["c", "cpp", "java", "go", "python"],
+      "template": "((7 / 3) == 2)",
+      "value": true
+    },
+    {
+      "id": "ten_mod_three_one",
+      "languages": ["c", "cpp", "java", "go", "python"],
+      "template": "((10 % 3) == 1)",
+      "value": true
+    },
+    {
+      "id": "abs_self_eq",
+      "languages": ["c", "cpp", "java", "go"],
+      "template": "((({x} < 0) ? -({x}) : ({x})) >= 0)",
+      "value": true,
+      "note": "absolute value is always non-negative"
+    },
+    {
+      "id": "xor_zero",
+      "languages": ["c", "cpp", "java", "go"],
+      "template": "(({x} ^ 0) == {x})",
+      "value": true
+    }
+  ]
+}

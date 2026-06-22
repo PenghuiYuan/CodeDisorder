@@ -12,7 +12,7 @@ cd CodeDisorder
 # 启动服务(前端 + API + Worker)
 docker-compose up
 
-# 访问 http://localhost:5173
+# 访问 http://localhost:8000
 ```
 
 ## 文档
